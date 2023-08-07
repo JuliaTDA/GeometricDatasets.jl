@@ -1,3 +1,4 @@
+# git subtree push --prefix docs origin gh-pages
 project:
   type: website
   output-dir: ../docs
