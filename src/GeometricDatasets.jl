@@ -2,7 +2,7 @@ module GeometricDatasets
 using LinearAlgebra
 
 include("types.jl");
-export PointCloud;[
+export PointCloud;
 
 include("maps");
 export immersion;
