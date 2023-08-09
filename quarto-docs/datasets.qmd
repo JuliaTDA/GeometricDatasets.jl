@@ -1,0 +1,16 @@
+# Datasets
+
+Here are some commom datasets from topology:
+
+### Sphere
+
+
+```{julia}
+using GeometricDatasets
+# X = sphere(1000; dim = 2, radius = 4)
+```
+
+
+```{julia}
+@doc sphere
+```

@@ -1,5 +1,39 @@
 ---
-title: "quarto-docs"
+title: "Getting started"
 ---
 
-Teste!!!!!!!!
+## Goals
+
+The goal of `GeometricDatasets.jl` is to provide some basic metric spaces of topology, like the torus, n-sphere, and so on. Besides that, we provide some functions to easily translate metric spaces, and also some methods to obtain submetric spaces in a "nice" way that still reflect the geometry of the total space.
+
+## Installation 
+
+In Julia, type
+
+```
+] add https://github.com/JuliaTDA/GeometricDatasets.jl
+```
+
+## First usage
+
+You can create point clouds with functions such that `torus` or `sphere`:
+
+
+```{julia}
+using GeometricDatasets;
+X = sphere(1000, dim = 2)
+```
+
+and plot it with Plots.jl:
+
+```{julia}
+using Plots;
+scatter(X[1, :], X[2, :])
+```
+
+You can also translate it easily:
+
+```{julia}
+Y = translation(X, [1, 1])
+scatter!(Y[1, :], Y[2, :])
+```

@@ -28,3 +28,10 @@ scatter(X[1, :], X[2, :])
 scatter(X[1, :], X[3, :])
 scatter(X[2, :], X[3, :])
 scatter(X[1, :], X[2, :], X[3, :], aspect_ratio = :equal)
+
+X = torus(1000)
+X .+ [1, 2, 3]
+
+reshape(1:9, (3, 3)) .+ (1, 2, 3)
+
+epsilon_net(X, 0.3)

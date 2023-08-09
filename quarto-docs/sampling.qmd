@@ -1,0 +1,30 @@
+---
+title: "Sampling data"
+format: html
+---
+
+## $ϵ$-net
+
+An $ϵ$-net is a subset $Y$ of a point cloud $X$ such that every point $x \in X$ is in an ϵ-ball with center in $y$ for some $y \in Y$.
+
+### Example
+
+First we define `X` to be 1000 random points in the unique square of $\mathbb{R}^2$:
+
+```{julia}
+using GeometricDatasets
+using Plots
+
+X = rand(2, 10^4)
+scatter(X[1, :], X[2, :], legend = false)
+```
+
+Then we create the $\epsilon$-net of $X$ and plot it in red:
+
+```{julia}
+ϵ = 0.1
+ids = epsilon_net(X, ϵ)
+Y = X[:, ids]
+
+scatter!(Y[1, :], Y[2, :], color = :red)
+```

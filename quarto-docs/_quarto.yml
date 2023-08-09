@@ -3,19 +3,18 @@ project:
   type: website
   output-dir: ../docs
 
+jupyter: julia-1.9
+
 website:
-  title: "quarto-docs"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+  title: "GeometricDatasets"  
+  sidebar:
+    contents:
+      - index.qmd
+      - datasets.md
+      - sampling.qmd
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
-
-
-
