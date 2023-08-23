@@ -41,3 +41,25 @@ function epsilon_net(X::PointCloud, ϵ::Number; metric = Distances.Euclidean())
 
     return landmarks
 end
+
+function farthest_points_sample(X::PointCloud, n::Integer; metric = Euclidean())    
+
+    size(X)[2] < n && return [1:size(X)[2];]
+
+    ids = zeros(Int64, n)
+    ids[1] = rand(1:n)
+
+    n == 1 && return ids
+    
+    commom_max_distance = colwise(metric, X[:, ids[1]], X)
+    
+    for i in 2:n
+        d_i = colwise(metric, X[:, ids[i-1]], X)
+    
+        commom_max_distance = mapslices(minimum, hcat(commom_max_distance, d_i), dims = 2) |> vec
+        
+        ids[i] = findmax(commom_max_distance)[2]    
+    end
+
+    return ids    
+end

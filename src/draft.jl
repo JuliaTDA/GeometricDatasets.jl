@@ -35,3 +35,22 @@ X .+ [1, 2, 3]
 reshape(1:9, (3, 3)) .+ (1, 2, 3)
 
 epsilon_net(X, 0.3)
+
+
+using GeometricDatasets
+import GeometricDatasets.Filters as gd_f
+
+X = randn(2, 5000)
+
+k = x -> exp(-x^2)
+k = identity
+dens = gd_f.density(X, kernel_function = X -> X .|> k |> sum)
+
+using Makie
+using GLMakie
+scatter(X, color = dens)
+
+ids = farthest_points_sample(X, 200)
+Y = X[:, ids]
+dens = gd_f.density(Y, kernel_function = X -> X .|> k |> sum)
+scatter(Y, color = dens)
