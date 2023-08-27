@@ -2,9 +2,30 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "quarto-docs",
+    "title": "Getting started",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "The goal of GeometricDatasets.jl is to provide some basic metric spaces from topology, like the torus, n-sphere, and so on. Besides that, we provide some functions to easily translate metric spaces, and also some methods to obtain submetric spaces in a “nice” way that still reflect the geometry of the total space. We plan to add dimensionality reduction methods soon."
+  },
+  {
+    "objectID": "index.html#goals",
+    "href": "index.html#goals",
+    "title": "Getting started",
+    "section": "",
+    "text": "The goal of GeometricDatasets.jl is to provide some basic metric spaces from topology, like the torus, n-sphere, and so on. Besides that, we provide some functions to easily translate metric spaces, and also some methods to obtain submetric spaces in a “nice” way that still reflect the geometry of the total space. We plan to add dimensionality reduction methods soon."
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "Getting started",
+    "section": "Installation",
+    "text": "Installation\nIn Julia, type\n\n] add https://github.com/JuliaTDA/GeometricDatasets.jl"
+  },
+  {
+    "objectID": "index.html#first-usage",
+    "href": "index.html#first-usage",
+    "title": "Getting started",
+    "section": "First usage",
+    "text": "First usage\nYou can create point clouds with functions such that torus or sphere:\n\nusing GeometricDatasets;\nX = sphere(1000, dim = 2)\n\n2×1000 Matrix{Float64}:\n 0.878033   0.117723   0.903986  …  -0.309874  0.285158  -0.999667\n 0.4786    -0.993046  -0.427562      0.950778  0.95848   -0.0258057\n\n\nand plot it with Plots.jl:\n\nusing CairoMakie;\nscatter(X)\n\n\n\n\nYou can also translate it easily and add to the previous plot:\n\nY = translate_space(X, [1, 1])\nZ = hcat(X, Y)\nscatter(Z)"
   },
   {
     "objectID": "about.html",
@@ -12,5 +33,33 @@
     "title": "About",
     "section": "",
     "text": "About this site"
+  },
+  {
+    "objectID": "sampling.html",
+    "href": "sampling.html",
+    "title": "Sampling data",
+    "section": "",
+    "text": "Methods for extracting subsets of the original pointcloud.\nusing GeometricDatasets\nusing CairoMakie"
+  },
+  {
+    "objectID": "sampling.html#ϵ-net",
+    "href": "sampling.html#ϵ-net",
+    "title": "Sampling data",
+    "section": "\\(ϵ\\)-net",
+    "text": "\\(ϵ\\)-net\nAn \\(ϵ\\)-net is a subset \\(Y\\) of a point cloud \\(X\\) such that every point \\(x \\in X\\) is in an ϵ-ball with center in \\(y\\) for some \\(y \\in Y\\).\n\nExample\nFirst we define X to be 1000 random points in the unique square of \\(\\mathbb{R}^2\\):\n\nX = rand(2, 10^4)\nfig, ax, plt = scatter(X)\nfig\n\n\n\n\nThen we create the \\(\\epsilon\\)-net of \\(X\\) and plot it in red:\n\nϵ = 0.1\nL = epsilon_net(X, ϵ)\nY = X[:, L]\n\nscatter!(ax, Y, color = :red)\nfig"
+  },
+  {
+    "objectID": "datasets.html",
+    "href": "datasets.html",
+    "title": "Datasets",
+    "section": "",
+    "text": "using GeometricDatasets;\nusing CairoMakie;\n\nBelow are some commom datasets from topology.\n\nSpheres\n\n\n\n\n\n\n\n\ndoc\n\n\n\nCreate a sphere in R^(dim) with n points and radius radius.\n\nArguments\n\nn::Integer: the number of points.\ndim::Integer: the dimension of the sphere (that is: in which R^dim it is).\nradius::Number: the radius of the sphere.\nnoise::Function: a function such that y = noise(dim) is a Vector{&lt;:Number} with size(y) = (dim;).\n\n\n\n\n\n\n\n X = sphere(1000; dim = 2, radius = 4);\n scatter(X)\n\n\n\n\nAdd some noise\n\nX = sphere(1000; dim = 2, noise = x -&gt; rand(x) * 0.2);\nscatter(X)\n\n\n\n\n\nX = sphere(1000; dim = 2, noise = x -&gt; rand(x) * 1);\nscatter(X)\n\n\n\n\n\nX = sphere(1000; dim = 3, noise = x -&gt; rand(x) * 0.3);\nscatter(X)\n\n\n\n\n\n\nCubes\n\n\n\n\n\n\n\n\ndoc\n\n\n\nCreate a cube in R^(dim``) withnpoints and radiusradius`.\n\nArguments\n\nn::Integer: the number of points.\ndim::Integer: the dimension of the cube (that is: in which R^dim it is).\nradius::Number: the “radius” of the cube, that is, the distance from the center to one of its sides..\nnoise::Function: a function such that y = noise(dim) is a Vector{&lt;:Number} with size(y) = (dim;).\n\n\n\n\n\n\n\nX = cube(1000; dim = 2);\nscatter(X)\n\n\n\n\n\nX = cube(500; dim = 3);\nscatter(X)\n\n\n\n\n\n\nTorus\n\n\n\n\n\n\n\n\ndoc\n\n\n\ntorus(n::Integer = 100; r::Number = 1, R::Number = 3)\n\nArguments\n\nn::Integer: the number of points.\nr::Number: the inner radius.\nR::Number: the outer radius.\n\n\n\n\n\n\n\nX = torus(1000);\nscatter(X)"
+  },
+  {
+    "objectID": "sampling.html#farthest-points-sample",
+    "href": "sampling.html#farthest-points-sample",
+    "title": "Sampling data",
+    "section": "Farthest points sample",
+    "text": "Farthest points sample\n\n\n\n\n\n\n\n\ndoc\n\n\n\nfarthest_points_sample(X::PointCloud, n::Integer; metric = Euclidean())\nGiven X and an integer n, return a subset of X such that its points are the most distant possible from each other.\n\nDetails\nLet X be a metric space with k points. Select a random point x_1 ∈ X. Select then x_2 as the point most distant from x_1 in relation to the given metric. After that, choose x_3 as the point most distant to both x_1 and x_2 at the same time. Keep choosing points like this until we have n points.\n\n\n\n\n\nLet \\(X\\) be a set of random numbers in the unit square:\n\nX = rand(2, 5000);\nfig, ax, plt = scatter(X);\nfig\n\n\n\n\nLet’s apply the farthest points sample using different parameters \\(n\\)\n\nL = farthest_points_sample(X, 50)\nplt2 = scatter!(ax, X[:, L], color = :red);\nfig\n\n\n\n\n\nplt2.alpha = 0\nL = farthest_points_sample(X, 100)\nplt2 = scatter!(ax, X[:, L], color = :red)\nfig\n\n\n\n\n\nplt2.alpha = 0\nL = farthest_points_sample(X, 500)\nplt2 = scatter!(ax, X[:, L], color = :red)\nfig\n\n\n\n\n\nplt2.alpha = 0\nL = farthest_points_sample(X, 1000)\nplt2 = scatter!(ax, X[:, L], color = :red)\nfig"
   }
 ]

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>GeometricDatasets - Getting started</title>
+<title>GeometricDatasets – datasets</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Getting started</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./datasets.html">Datasets</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -134,13 +134,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting started</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./datasets.html" class="sidebar-item-text sidebar-link">
+  <a href="./datasets.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Datasets</span></a>
   </div>
 </li>
@@ -160,9 +160,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals">Goals</a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#first-usage" id="toc-first-usage" class="nav-link" data-scroll-target="#first-usage">First usage</a></li>
+  <li><a href="#spheres" id="toc-spheres" class="nav-link active" data-scroll-target="#spheres">Spheres</a></li>
+  <li><a href="#cubes" id="toc-cubes" class="nav-link" data-scroll-target="#cubes">Cubes</a></li>
+  <li><a href="#torus" id="toc-torus" class="nav-link" data-scroll-target="#torus">Torus</a></li>
   </ul>
 </nav>
     </div>
@@ -171,7 +171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Getting started</h1>
+<h1 class="title">Datasets</h1>
 </div>
 
 
@@ -186,44 +186,144 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="goals" class="level2">
-<h2 class="anchored" data-anchor-id="goals">Goals</h2>
-<p>The goal of <code>GeometricDatasets.jl</code> is to provide some basic metric spaces from topology, like the torus, n-sphere, and so on. Besides that, we provide some functions to easily translate metric spaces, and also some methods to obtain submetric spaces in a “nice” way that still reflect the geometry of the total space. We plan to add dimensionality reduction methods soon.</p>
-</section>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<p>In Julia, type</p>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>] add https<span class="op">://</span>github.com<span class="op">/</span>JuliaTDA<span class="op">/</span>GeometricDatasets.jl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">GeometricDatasets;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CairoMakie;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Below are some commom datasets from topology.</p>
+<section id="spheres" class="level3">
+<h3 class="anchored" data-anchor-id="spheres">Spheres</h3>
+<div class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+doc
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Create a sphere in R^(<code>dim</code>) with <code>n</code> points and radius <code>radius</code>.</p>
+<section id="arguments" class="level3">
+<h3 class="anchored" data-anchor-id="arguments">Arguments</h3>
+<ul>
+<li><code>n::Integer</code>: the number of points.</li>
+<li><code>dim::Integer</code>: the dimension of the sphere (that is: in which R^dim it is).</li>
+<li><code>radius::Number</code>: the radius of the sphere.</li>
+<li><code>noise::Function</code>: a function such that <code>y = noise(dim)</code> is a <code>Vector{&lt;:Number}</code> with <code>size(y) = (dim;)</code>.</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> X <span class="op">=</span> <span class="fu">sphere</span>(<span class="fl">1000</span>; dim <span class="op">=</span> <span class="fl">2</span>, radius <span class="op">=</span> <span class="fl">4</span>);</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">scatter</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<p><img src="datasets_files/figure-html/cell-4-output-1.svg" class="img-fluid"></p>
+</div>
+</div>
+<p>Add some noise</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> <span class="fu">sphere</span>(<span class="fl">1000</span>; dim <span class="op">=</span> <span class="fl">2</span>, noise <span class="op">=</span> x <span class="op">-&gt;</span> <span class="fu">rand</span>(x) <span class="op">*</span> <span class="fl">0.2</span>);</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<p><img src="datasets_files/figure-html/cell-5-output-1.svg" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> <span class="fu">sphere</span>(<span class="fl">1000</span>; dim <span class="op">=</span> <span class="fl">2</span>, noise <span class="op">=</span> x <span class="op">-&gt;</span> <span class="fu">rand</span>(x) <span class="op">*</span> <span class="fl">1</span>);</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<p><img src="datasets_files/figure-html/cell-6-output-1.svg" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> <span class="fu">sphere</span>(<span class="fl">1000</span>; dim <span class="op">=</span> <span class="fl">3</span>, noise <span class="op">=</span> x <span class="op">-&gt;</span> <span class="fu">rand</span>(x) <span class="op">*</span> <span class="fl">0.3</span>);</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<p><img src="datasets_files/figure-html/cell-7-output-1.svg" class="img-fluid"></p>
+</div>
 </div>
 </section>
-<section id="first-usage" class="level2">
-<h2 class="anchored" data-anchor-id="first-usage">First usage</h2>
-<p>You can create point clouds with functions such that <code>torus</code> or <code>sphere</code>:</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">GeometricDatasets;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> <span class="fu">sphere</span>(<span class="fl">1000</span>, dim <span class="op">=</span> <span class="fl">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>2×1000 Matrix{Float64}:
- 0.878033   0.117723   0.903986  …  -0.309874  0.285158  -0.999667
- 0.4786    -0.993046  -0.427562      0.950778  0.95848   -0.0258057</code></pre>
+<section id="cubes" class="level3">
+<h3 class="anchored" data-anchor-id="cubes">Cubes</h3>
+<div class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+doc
 </div>
 </div>
-<p>and plot it with Plots.jl:</p>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CairoMakie;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<p><img src="index_files/figure-html/cell-4-output-1.svg" class="img-fluid"></p>
+<div class="callout-body-container callout-body">
+<p>Create a cube in R^(<code>dim``) with</code>n<code>points and radius</code>radius`.</p>
+<section id="arguments-1" class="level3">
+<h3 class="anchored" data-anchor-id="arguments-1">Arguments</h3>
+<ul>
+<li><code>n::Integer</code>: the number of points.</li>
+<li><code>dim::Integer</code>: the dimension of the cube (that is: in which R^dim it is).</li>
+<li><code>radius::Number</code>: the “radius” of the cube, that is, the distance from the center to one of its sides..</li>
+<li><code>noise::Function</code>: a function such that <code>y = noise(dim)</code> is a <code>Vector{&lt;:Number}</code> with <code>size(y) = (dim;)</code>.</li>
+</ul>
+</section>
 </div>
 </div>
-<p>You can also translate it easily and add to the previous plot:</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> <span class="fu">translate_space</span>(X, [<span class="fl">1</span>, <span class="fl">1</span>])</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> <span class="fu">hcat</span>(X, Y)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter</span>(Z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
-<p><img src="index_files/figure-html/cell-5-output-1.svg" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> <span class="fu">cube</span>(<span class="fl">1000</span>; dim <span class="op">=</span> <span class="fl">2</span>);</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<p><img src="datasets_files/figure-html/cell-9-output-1.svg" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> <span class="fu">cube</span>(<span class="fl">500</span>; dim <span class="op">=</span> <span class="fl">3</span>);</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<p><img src="datasets_files/figure-html/cell-10-output-1.svg" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="torus" class="level3">
+<h3 class="anchored" data-anchor-id="torus">Torus</h3>
+<div class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+doc
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>torus(n::Integer = 100; r::Number = 1, R::Number = 3)</code></pre>
+<section id="arguments-2" class="level3">
+<h3 class="anchored" data-anchor-id="arguments-2">Arguments</h3>
+<ul>
+<li><code>n::Integer</code>: the number of points.</li>
+<li><code>r::Number</code>: the inner radius.</li>
+<li><code>R::Number</code>: the outer radius.</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> <span class="fu">torus</span>(<span class="fl">1000</span>);</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<p><img src="datasets_files/figure-html/cell-12-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
 
