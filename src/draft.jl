@@ -38,7 +38,7 @@ epsilon_net(X, 0.3)
 
 
 using GeometricDatasets
-import GeometricDatasets.Filters as gd_f
+import GeometricDatasets as gd
 
 X = randn(2, 5000)
 

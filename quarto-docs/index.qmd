@@ -4,20 +4,20 @@ title: "Getting started"
 
 ## Goals
 
-The goal of `GeometricDatasets.jl` is to provide some basic metric spaces of topology, like the torus, n-sphere, and so on. Besides that, we provide some functions to easily translate metric spaces, and also some methods to obtain submetric spaces in a "nice" way that still reflect the geometry of the total space.
+The goal of `GeometricDatasets.jl` is to provide some basic metric spaces from topology, like the torus, n-sphere, and so on. Besides that, we provide some functions to easily translate metric spaces, and also some methods to obtain submetric spaces in a "nice" way that still reflect the geometry of the total space. We plan to add dimensionality reduction methods soon.
 
 ## Installation 
 
 In Julia, type
 
-```
+```{julia}
+#| eval: false
 ] add https://github.com/JuliaTDA/GeometricDatasets.jl
 ```
 
 ## First usage
 
 You can create point clouds with functions such that `torus` or `sphere`:
-
 
 ```{julia}
 using GeometricDatasets;
@@ -27,13 +27,14 @@ X = sphere(1000, dim = 2)
 and plot it with Plots.jl:
 
 ```{julia}
-using Plots;
-scatter(X[1, :], X[2, :])
+using CairoMakie;
+scatter(X)
 ```
 
-You can also translate it easily:
+You can also translate it easily and add to the previous plot:
 
 ```{julia}
-Y = translation(X, [1, 1])
-scatter!(Y[1, :], Y[2, :])
+Y = translate_space(X, [1, 1])
+Z = hcat(X, Y)
+scatter(Z)
 ```

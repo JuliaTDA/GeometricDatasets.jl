@@ -1,7 +1,7 @@
 module Filters
 
-using Distances
 using ..GeometricDatasets
+using Distances
 
 include("density.jl");
 export density;

@@ -1,16 +1,66 @@
 # Datasets
 
-Here are some commom datasets from topology:
-
-### Sphere
-
-
 ```{julia}
-using GeometricDatasets
-# X = sphere(1000; dim = 2, radius = 4)
+using GeometricDatasets;
+using CairoMakie;
 ```
 
+Below are some commom datasets from topology.
+
+### Spheres
 
 ```{julia}
-@doc sphere
+#| echo: false
+@qdoc sphere
+```
+
+```{julia}
+ X = sphere(1000; dim = 2, radius = 4);
+ scatter(X)
+```
+
+Add some noise
+
+```{julia}
+X = sphere(1000; dim = 2, noise = x -> rand(x) * 0.2);
+scatter(X)
+```
+
+```{julia}
+X = sphere(1000; dim = 2, noise = x -> rand(x) * 1);
+scatter(X)
+```
+
+```{julia}
+X = sphere(1000; dim = 3, noise = x -> rand(x) * 0.3);
+scatter(X)
+```
+
+### Cubes
+
+```{julia}
+#| echo: false
+@qdoc cube
+```
+
+```{julia}
+X = cube(1000; dim = 2);
+scatter(X)
+```
+
+```{julia}
+X = cube(500; dim = 3);
+scatter(X)
+```
+
+### Torus
+
+```{julia}
+#| echo: false
+@qdoc torus
+```
+
+```{julia}
+X = torus(1000);
+scatter(X)
 ```

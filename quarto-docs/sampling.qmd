@@ -1,7 +1,57 @@
 ---
 title: "Sampling data"
-format: html
 ---
+
+Methods for extracting subsets of the original pointcloud.
+
+```{julia}
+using GeometricDatasets
+using CairoMakie
+```
+
+## Farthest points sample
+
+```{julia}
+#| echo: false
+@qdoc farthest_points_sample
+```
+
+Let $X$ be a set of random numbers in the unit square:
+
+```{julia}
+X = rand(2, 5000);
+fig, ax, plt = scatter(X);
+fig
+```
+
+Let's apply the farthest points sample using different parameters $n$
+
+```{julia}
+L = farthest_points_sample(X, 50)
+plt2 = scatter!(ax, X[:, L], color = :red);
+fig
+```
+
+```{julia}
+plt2.alpha = 0
+L = farthest_points_sample(X, 100)
+plt2 = scatter!(ax, X[:, L], color = :red)
+fig
+```
+
+```{julia}
+plt2.alpha = 0
+L = farthest_points_sample(X, 500)
+plt2 = scatter!(ax, X[:, L], color = :red)
+fig
+```
+
+```{julia}
+plt2.alpha = 0
+L = farthest_points_sample(X, 1000)
+plt2 = scatter!(ax, X[:, L], color = :red)
+fig
+```
 
 ## $ϵ$-net
 
@@ -12,19 +62,18 @@ An $ϵ$-net is a subset $Y$ of a point cloud $X$ such that every point $x \in X$
 First we define `X` to be 1000 random points in the unique square of $\mathbb{R}^2$:
 
 ```{julia}
-using GeometricDatasets
-using Plots
-
 X = rand(2, 10^4)
-scatter(X[1, :], X[2, :], legend = false)
+fig, ax, plt = scatter(X)
+fig
 ```
 
 Then we create the $\epsilon$-net of $X$ and plot it in red:
 
 ```{julia}
 ϵ = 0.1
-ids = epsilon_net(X, ϵ)
-Y = X[:, ids]
+L = epsilon_net(X, ϵ)
+Y = X[:, L]
 
-scatter!(Y[1, :], Y[2, :], color = :red)
+scatter!(ax, Y, color = :red)
+fig
 ```

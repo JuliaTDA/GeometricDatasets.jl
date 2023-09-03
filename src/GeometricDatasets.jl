@@ -6,12 +6,15 @@ using Distances
 using Base.Threads
 export @threads
 
+using Quartomenter;
+export @qdoc;
+
 include("types.jl");
 export PointCloud;
 
 include("maps.jl");
-export immersion, 
-    translation;
+export include_space, 
+    translate_space;
 
 include("sampling.jl");
 export epsilon_net, 

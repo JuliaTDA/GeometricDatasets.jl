@@ -10,7 +10,7 @@ website:
   sidebar:
     contents:
       - index.qmd
-      - datasets.md
+      - datasets.qmd
       - sampling.qmd
 
 format:
