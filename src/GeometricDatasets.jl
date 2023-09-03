@@ -1,5 +1,4 @@
 module GeometricDatasets
-using Compat
 using LinearAlgebra
 using Distances
 using NearestNeighbors
