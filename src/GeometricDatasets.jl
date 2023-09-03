@@ -1,13 +1,11 @@
 module GeometricDatasets
+using Compat
 using LinearAlgebra
 using Distances
 using NearestNeighbors
 using Distances
 using Base.Threads
 export @threads
-
-using Quartomenter;
-export @qdoc;
 
 include("types.jl");
 export PointCloud;
