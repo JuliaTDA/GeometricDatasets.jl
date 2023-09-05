@@ -1,0 +1,100 @@
+# Reference 
+ 
+
+## Module GeometricDatasets 
+
+:::{.callout-note appearance="simple"}
+
+```
+torus(n::Integer = 100; r::Number = 1, R::Number = 3)
+```
+
+### Arguments
+
+  * `n::Integer`: the number of points.
+  * `r::Number`: the inner radius.
+  * `R::Number`: the outer radius.
+
+:::
+
+:::{.callout-note appearance="simple"}
+
+```
+epsilon_net(X, ϵ; metric)
+```
+
+Cover the PointCloud X with balls of radius ϵ. Returns the vector of indexes of X that are the ball's centers.
+
+#### Details
+
+We start by covering the first point of X with an ϵ-ball. Then we search for the next point of X that is not covered by this ball. We repeat the process, until all points are inside a ball.
+
+:::
+
+:::{.callout-note appearance="simple"}
+
+```
+immersion(X::PointCloud, n::Integer)
+```
+
+Include the pointcloud X of R^m into R^{m+n}, with all extra coordinates equal 0.
+
+Return a PointCloud.
+
+:::
+
+:::{.callout-note appearance="simple"}
+
+Create a cube in R^(`dim``) with`n`points and radius`radius`.
+
+### Arguments
+
+  * `n::Integer`: the number of points.
+  * `dim::Integer`: the dimension of the cube (that is: in which R^dim it is).
+  * `radius::Number`: the "radius" of the cube, that is, the distance from the center to one of its sides..
+  * `noise::Function`: a function such that `y = noise(dim)` is a `Vector{<:Number}` with `size(y) = (dim;)`.
+
+:::
+
+:::{.callout-note appearance="simple"}
+
+```
+farthest_points_sample(
+    X::PointCloud, n::Integer; 
+    metric = Euclidean()
+    )
+```
+
+Given `X` and an integer `n`, return a subset of `X` such that its points are the most distant possible from each other.
+
+#### Details
+
+Let `X` be a metric space with `k` points. Select a random point `x_1` ∈ `X`. Select then `x_2` as the point most distant from `x_1` in relation to the given metric. After that, choose `x_3` as the point most distant to both `x_1` and `x_2` at the same time. Keep choosing points like this until we have `n` points.
+
+:::
+
+:::{.callout-note appearance="simple"}
+
+Create a sphere in R^(`dim`) with `n` points and radius `radius`.
+
+### Arguments
+
+  * `n::Integer`: the number of points.
+  * `dim::Integer`: the dimension of the sphere (that is: in which R^dim it is).
+  * `radius::Number`: the radius of the sphere.
+  * `noise::Function`: a function such that `y = noise(dim)` is a `Vector{<:Number}` with `size(y) = (dim;)`.
+
+:::
+
+:::{.callout-note appearance="simple"}
+
+```
+translation(X::PointCloud, vector::Union{Vector{<: Number}, Tuple})
+```
+
+Translate the space `X` by adding the `vector` to each point of X.
+
+Return a PointCloud.
+
+:::
+

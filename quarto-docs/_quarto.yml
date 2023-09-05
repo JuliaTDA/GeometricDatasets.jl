@@ -12,6 +12,7 @@ website:
       - index.qmd
       - datasets.qmd
       - sampling.qmd
+      - quarto_docs.qmd
 
 format:
   html:

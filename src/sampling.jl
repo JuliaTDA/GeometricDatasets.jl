@@ -4,7 +4,7 @@
 Cover the PointCloud X with balls of radius ϵ.
 Returns the vector of indexes of X that are the ball's centers.
 
-## Details
+# Details
 
 We start by covering the first point of X with an ϵ-ball. Then we search for the next
 point of X that is not covered by this ball. We repeat the process, until
@@ -53,7 +53,7 @@ end
 Given `X` and an integer `n`, return a subset of `X` such that
 its points are the most distant possible from each other.
 
-## Details
+# Details
 
 Let `X` be a metric space with `k` points. Select
 a random point `x_1` ∈ `X`. Select then `x_2` as the point

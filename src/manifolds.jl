@@ -1,5 +1,11 @@
 
 """
+    sphere(
+        n::Integer = 100; dim::Integer = 2, 
+        radius::Number = 1, 
+        noise::Function = zeros
+        )
+
 Create a sphere in R^(`dim`) with `n` points and radius `radius`.
 
 # Arguments
@@ -19,7 +25,14 @@ function sphere(n::Integer = 100; dim::Integer = 2, radius::Number = 1, noise::F
 end
 
 """
-Create a cube in R^(`dim``) with `n` points and radius `radius`.
+
+    cube(
+        n::Integer = 100; dim::Integer = 2, 
+        radius::Number = 1, 
+        noise::Function = zeros
+        )
+
+Create a cube in R^(`dim`) with `n` points and radius `radius`.
 
 # Arguments
 - `n::Integer`: the number of points.
