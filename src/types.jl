@@ -8,3 +8,11 @@ PointCloud = Matrix{<:Number}
 ```
 """
 PointCloud = Matrix{<:Number}
+
+"""
+    n_points(X)
+
+Returns the number of points of `X`.
+"""
+n_points(X::PointCloud) = size(X)[2]
+n_points(X::Vector{<:Real}) = length(X)
