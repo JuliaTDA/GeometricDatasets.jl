@@ -8,7 +8,7 @@ using StatsBase: mean
 export @threads
 
 include("types.jl");
-export PointCloud;
+export PointCloud, n_points;
 
 include("maps.jl");
 export include_space, 
